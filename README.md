@@ -27,8 +27,8 @@
     </a>    
 </p>
 
-HTML Helper is a PHP library that simplifies the creation of HTML content. It provides a set of functions to generate
-HTML elements in a programmatic and reusable way.
+HTML Helper is a PHP library that simplifies the creation of HTML elements. It provides a set of classes to generate
+HTML attributes, encode content, sanitize HTML content, and more.
 
 
 ## Installation
