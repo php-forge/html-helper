@@ -11,6 +11,7 @@
     "license": "mit",
     "require": {
         "php": "^8.1",
+        "ext-mbstring": "*",
         "php-forge/html-interop": "dev-main",
         "voku/anti-xss": "^4.1"
     },
