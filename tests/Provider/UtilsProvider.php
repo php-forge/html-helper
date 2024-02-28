@@ -6,6 +6,32 @@ namespace PHPForge\Html\Helper\Tests\Provider;
 
 final class UtilsProvider
 {
+    public static function convertToPattern(): array
+    {
+        return [
+            ['', '//'],
+            ['.*', '/.*/'],
+            ['([a-z0-9-]+)', '/([a-z0-9-]+)/Ugimex'],
+            ['([a-z0-9-]+)', '~([a-z0-9-]+)~Ugimex'],
+            ['([a-z0-9-]+)', '~([a-z0-9-]+)~Ugimex', '~'],
+            ['\u1F596([a-z])', '/\x{1F596}([a-z])/i'],
+        ];
+    }
+
+    public static function convertToPatternInvalid(): array
+    {
+        return [
+            ['', 'The length of the regular expression cannot be less than 2.'],
+            ['*', 'The length of the regular expression cannot be less than 2.'],
+            ['.*', 'Incorrect regular expression.'],
+            ['/.*', 'Incorrect regular expression.'],
+            ['([a-z0-9-]+)', 'Incorrect regular expression.'],
+            ['/.*/i', 'Incorrect regular expression.', '~'],
+            ['/.*/i', 'Incorrect delimiter.', '//'],
+            ['/~~/i', 'Incorrect delimiter.', '~~'],
+        ];
+    }
+
     public static function dataGetInputName(): array
     {
         return [
@@ -23,32 +49,6 @@ final class UtilsProvider
             ['TestForm', 'age', true, 'TestForm[age][]'],
             ['', 'dates[0]', true, 'dates[0][]'],
             ['', 'age', true, 'age[]'],
-        ];
-    }
-
-    public static function normalizeRegexpPattern(): array
-    {
-        return [
-            ['', '//'],
-            ['.*', '/.*/'],
-            ['([a-z0-9-]+)', '/([a-z0-9-]+)/Ugimex'],
-            ['([a-z0-9-]+)', '~([a-z0-9-]+)~Ugimex'],
-            ['([a-z0-9-]+)', '~([a-z0-9-]+)~Ugimex', '~'],
-            ['\u1F596([a-z])', '/\x{1F596}([a-z])/i'],
-        ];
-    }
-
-    public static function normalizeRegexpPatternInvalid(): array
-    {
-        return [
-            ['', 'The length of the regular expression cannot be less than 2.'],
-            ['*', 'The length of the regular expression cannot be less than 2.'],
-            ['.*', 'Incorrect regular expression.'],
-            ['/.*', 'Incorrect regular expression.'],
-            ['([a-z0-9-]+)', 'Incorrect regular expression.'],
-            ['/.*/i', 'Incorrect regular expression.', '~'],
-            ['/.*/i', 'Incorrect delimiter.', '//'],
-            ['/~~/i', 'Incorrect delimiter.', '~~'],
         ];
     }
 }

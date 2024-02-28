@@ -6,10 +6,41 @@ namespace PHPForge\Html\Tests\Helper;
 
 use InvalidArgumentException;
 use PHPForge\Html\Helper\Utils;
-use PHPUnit\Framework\TestCase;
 
-final class UtilsTest extends TestCase
+final class UtilsTest extends \PHPUnit\Framework\TestCase
 {
+    /**
+     * @dataProvider PHPForge\Html\Helper\Tests\Provider\UtilsProvider::convertToPattern
+     *
+     * @param string $expected The expected result.
+     * @param string $regexp The regexp pattern to normalize.
+     * @param string|null $delimiter The delimiter to use.
+     */
+    public function testConvertToPattern(string $expected, string $regexp, string $delimiter = null): void
+    {
+        $this->assertSame($expected, Utils::convertToPattern($regexp, $delimiter));
+    }
+
+    /**
+     * @dataProvider PHPForge\Html\Helper\Tests\Provider\UtilsProvider::convertToPatternInvalid
+     *
+     * @param string $regexp The regexp pattern to normalize.
+     * @param string $message The expected exception message.
+     * @param string|null $delimiter The delimiter to use.
+     */
+    public function testConvertToPatterInvalid(string $regexp, string $message, ?string $delimiter = null): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage($message);
+
+        Utils::convertToPattern($regexp, $delimiter);
+    }
+
+    public function testGetShortNameClass(): void
+    {
+        $this->assertSame('UtilsTest::class', Utils::getShortNameClass(self::class));
+    }
+
     public function testGenerateArrayableName(): void
     {
         $this->assertSame('test.name[]', Utils::generateArrayableName('test.name'));
@@ -41,7 +72,7 @@ final class UtilsTest extends TestCase
     public function testGetInputNamewithOnlyCharacters(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('Attribute name must contain word characters only.');
+        $this->expectExceptionMessage('Property name must contain word characters only.');
 
         Utils::generateInputName('TestForm', 'content body');
     }
@@ -49,7 +80,7 @@ final class UtilsTest extends TestCase
     public function testGetInputNameExceptionWithTabular(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('The form name cannot be empty for tabular inputs.');
+        $this->expectExceptionMessage('The field model cannot be empty for tabular inputs.');
 
         Utils::generateInputName('', '[0]dates[0]');
     }
@@ -65,37 +96,5 @@ final class UtilsTest extends TestCase
     public function testMultibyteGenerateInputId(): void
     {
         $this->assertSame('testform-mąka', Utils::generateInputId('TestForm', 'mĄkA'));
-    }
-
-    /**
-     * @dataProvider PHPForge\Html\Helper\Tests\Provider\UtilsProvider::normalizeRegexpPattern
-     *
-     * @param string $expected The expected result.
-     * @param string $regexp The regexp pattern to normalize.
-     * @param string|null $delimiter The delimiter to use.
-     */
-    public function testNormalizeRegexpPattern(string $expected, string $regexp, ?string $delimiter = null): void
-    {
-        $this->assertSame($expected, Utils::normalizeRegexpPattern($regexp, $delimiter));
-    }
-
-    /**
-     * @dataProvider PHPForge\Html\Helper\Tests\Provider\UtilsProvider::normalizeRegexpPatternInvalid
-     *
-     * @param string $regexp The regexp pattern to normalize.
-     * @param string $message The expected exception message.
-     * @param string|null $delimiter The delimiter to use.
-     */
-    public function testNormalizeRegexpPatternInvalid(string $regexp, string $message, ?string $delimiter = null): void
-    {
-        $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage($message);
-
-        Utils::normalizeRegexpPattern($regexp, $delimiter);
-    }
-
-    public function testShortNameClass(): void
-    {
-        $this->assertSame('UtilsTest::class', Utils::shortNameClass(self::class));
     }
 }

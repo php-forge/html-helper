@@ -23,21 +23,21 @@ final class CssClass
      * effect.
      *
      * @param array $attributes The attributes to be modified.
-     * @param array|string $class The CSS class(es) to be added.
+     * @param array|string $classes The CSS class(es) to be added.
      * @param bool $override Whether to override existing CSS class(es) with new one.
      *
      * @psalm-param string|string[] $class
      */
-    public static function add(array &$attributes, array|string $class, bool $override = false): void
+    public static function add(array &$attributes, array|string $classes, bool $override = false): void
     {
-        if ($class === '' || $class === []) {
+        if ($classes === '' || $classes === []) {
             return;
         }
 
         if ($override) {
-            $classArray = is_array($class)
-                ? $class
-                : preg_split('/\s+/', $class, flags: PREG_SPLIT_NO_EMPTY);
+            $classArray = is_array($classes)
+                ? $classes
+                : preg_split('/\s+/', $classes, flags: PREG_SPLIT_NO_EMPTY);
 
             $attributes['class'] = implode(' ', $classArray);
 
@@ -54,9 +54,9 @@ final class CssClass
                     flags: PREG_SPLIT_NO_EMPTY
                 );
 
-            $newClasses = is_array($class)
-                ? $class
-                : preg_split('/\s+/', $class, -1, PREG_SPLIT_NO_EMPTY);
+            $newClasses = is_array($classes)
+                ? $classes
+                : preg_split('/\s+/', $classes, -1, PREG_SPLIT_NO_EMPTY);
 
             $mergedClasses = self::merge($existingClasses, $newClasses);
 
@@ -65,9 +65,9 @@ final class CssClass
             return;
         }
 
-        $classArray = is_array($class)
-            ? $class
-            : preg_split('/\s+/', $class, flags: PREG_SPLIT_NO_EMPTY);
+        $classArray = is_array($classes)
+            ? $classes
+            : preg_split('/\s+/', $classes, flags: PREG_SPLIT_NO_EMPTY);
 
         $attributes['class'] = implode(' ', $classArray);
     }
