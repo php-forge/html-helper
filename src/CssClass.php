@@ -26,7 +26,7 @@ final class CssClass
      * @param array|string $classes The CSS class(es) to be added.
      * @param bool $override Whether to override existing CSS class(es) with new one.
      *
-     * @psalm-param string|string[] $class
+     * @psalm-param string|string[] $classes
      */
     public static function add(array &$attributes, array|string $classes, bool $override = false): void
     {
