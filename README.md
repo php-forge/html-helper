@@ -27,6 +27,10 @@
     </a>    
 </p>
 
+HTML Helper is a PHP library that simplifies the creation of HTML content. It provides a set of functions to generate
+HTML elements in a programmatic and reusable way.
+
+
 ## Installation
 
 The preferred way to install this extension is through [composer](https://getcomposer.org/download/).
@@ -47,7 +51,215 @@ to the require section of your `composer.json` file.
 
 ## Usage
 
-[Check the documentation docs](docs/README.md) to learn about usage.
+### Add CSS classes
+
+The `CssClasses::class` helper can be used to add CSS classes to an HTML element.
+
+The method accepts three parameters:
+
+- `attributes:` (array): The HTML attributes of the element.
+- `classes:` (array|string): The CSS classes to add.
+- `overwrite:` (bool): Whether to overwrite the `class` attribute or not. For default, it is `false`.
+
+```php
+<?php
+
+declare(strict_types=1);
+
+use PHPForge\Html\Helper\CssClasses;
+
+private array $attributes = [];
+
+$classes = CssClasses::add($this->attributes, ['btn', 'btn-primary', 'btn-lg']);
+```
+
+Overwriting the `class` attribute:
+
+```php
+<?php
+
+declare(strict_types=1);
+
+use PHPForge\Html\Helper\CssClasses;
+
+private array $attributes = ['class' => 'btn'];
+
+$classes = CssClasses::add($this->attributes, ['btn-primary', 'btn-lg'], true);
+```
+
+### Convert regular expression to pattern
+
+The `Utils::class` helper can be used to normalize a regular expression.
+
+The method accepts one parameter:
+
+- `regexp:` (string): The pattern to normalize.
+- `delimiter:` (string): The delimiter to use. For default, it is `null`.
+
+```php
+<?php
+
+declare(strict_types=1);
+
+use PHPForge\Html\Helper\Utils;
+
+$pattern = Utils::convertToPattern('/([a-z0-9-]+)/im'); // return: `([a-z0-9-]+)`
+```
+
+### Encode content
+
+The `Encode::class` helper can be used to encode HTML content.
+
+The method accepts tree parameters:
+
+- `content:` (string): The content to encode.
+- `doubleEncode:` (bool): Whether to double encode the content or not. For default, it is `true`.
+- `charset:` (string): The charset to use. For default, it is `UTF-8`.
+
+```php
+<?php
+
+declare(strict_types=1);
+
+use PHPForge\Html\Helper\Encode;
+
+$content = Encode::html('<script>alert("Hello, World!")</script>');
+```
+
+### Encode value
+
+The `Encode::class` helper can be used to encode HTML value.
+
+The method accepts tree parameters:
+
+- `value:` (string): The value to encode.
+- `doubleEncode:` (bool): Whether to double encode the value or not. For default, it is `true`.
+- `charset:` (string): The charset to use. For default, it is `UTF-8`.
+
+```php
+<?php
+
+declare(strict_types=1);
+
+use PHPForge\Html\Helper\Encode;
+
+$value = Encode::value('<script>alert("Hello, World!")</script>');
+```
+
+### Get short class name
+
+The `Utils::class` helper can be used to get the short class name.
+
+The method accepts one parameter:
+
+- `class:` (string): The class name to get the short name.
+
+```php
+<?php
+
+declare(strict_types=1);
+
+use PHPForge\Html\Helper\Utils;
+
+$shortName = Utils::getShortClassName('PHPForge\Html\Helper\Utils'); // return: `Utils`
+```
+
+### Generate arrayable name
+
+The `ArrayableName::class` helper can be used to generate an arrayable name.
+
+The method accepts one parameter:
+
+- `name:` (string): The name to generate.
+
+```php
+<?php
+
+declare(strict_types=1);
+
+use PHPForge\Html\Helper\Utils;
+
+$name = Utils::generateArrayableName('name');
+```
+
+### Generate input id
+
+The `Utils::class` helper can be used to generate an input id.
+
+The method accepts tree parameters:
+
+- `fieldModel:` (string): The name of the field model.
+- `property:` (string): The name of the property.
+- `charset:` (string): The charset to use. For default, it is `UTF-8`.
+
+```php
+<?php
+
+declare(strict_types=1);
+
+use PHPForge\Html\Helper\Utils;
+
+$id = Utils::generateInputId('user', 'name');
+```
+
+### Generate input name
+
+The `Utils::class` helper can be used to generate an input name.
+
+The method accepts tree parameters:
+
+- `fieldModel:` (string): The name of the field model.
+- `property:` (string): The name of the property.
+- `arrayable:` (bool): Whether the name is arrayable or not. For default, it is `false`.
+
+```php
+<?php
+
+declare(strict_types=1);
+
+use PHPForge\Html\Helper\Utils;
+
+$name = Utils::generateInputName('user', 'name');
+```
+
+### Sanitize content
+
+The `Sanitize::class` helper can be used to sanitize HTML content.
+
+The method accepts one parameter:
+
+- `content:` (...string|RenderInterface): The content to sanitize. It can be a string or an object that implements the
+  `RenderInterface::class`.  
+
+```php
+<?php
+
+declare(strict_types=1);
+
+use PHPForge\Html\Helper\Sanitize;
+
+$content = Sanitize::html('<script>alert("Hello, World!")</script>');
+```
+
+### Render HTML attributes
+
+The `Attributes::class` helper can be used to `render` HTML attributes in a programmatic way.
+
+```php
+<?php
+
+declare(strict_types=1);
+
+use PHPForge\Html\Helper\Attributes;
+
+$attributes = Attributes::render(
+    [
+        'class' => 'btn btn-primary',
+        'id' => 'submit-button',
+        'disabled' => true,
+    ]
+);
+```
 
 ## Testing
 

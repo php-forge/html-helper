@@ -5,9 +5,8 @@ declare(strict_types=1);
 namespace PHPForge\Html\Tests\Helper;
 
 use PHPForge\{Html\Helper\CssClass, Support\Assert};
-use PHPUnit\Framework\TestCase;
 
-final class CssClassTest extends TestCase
+final class CssClassTest extends \PHPUnit\Framework\TestCase
 {
     public function testAddWithArray(): void
     {

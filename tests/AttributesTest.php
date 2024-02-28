@@ -5,9 +5,8 @@ declare(strict_types=1);
 namespace PHPForge\Html\Tests\Helper;
 
 use PHPForge\Html\Helper\Attributes;
-use PHPUnit\Framework\TestCase;
 
-final class AttributesTest extends TestCase
+final class AttributesTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @dataProvider PHPForge\Html\Helper\Tests\Provider\AttributesProvider::dataRenderTagAttributes
