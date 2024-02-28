@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace PHPForge\Html\Tests\Helper;
 
-use PHPForge\{Html\Helper\Sanitize, Support\Assert};
+use PHPForge\{Html\Helper\Sanitize, Html\Helper\Tests\Support\InputWidget, Support\Assert};
 
 final class SanitizeTest extends \PHPUnit\Framework\TestCase
 {
@@ -22,7 +22,7 @@ final class SanitizeTest extends \PHPUnit\Framework\TestCase
         );
     }
 
-    public function testSantizeXSS(): void
+    public function testHtml(): void
     {
         $this->assertSame(
             '<a >click</a>',
@@ -63,6 +63,14 @@ final class SanitizeTest extends \PHPUnit\Framework\TestCase
                 '<input type="text" value="test" style="padding-left:20px" oinvalid="" onfocus="alert(\'XSS\')" />',
                 '</div>'
             )
+        );
+    }
+
+    public function testHtmlWithRenderInterface(): void
+    {
+        $this->assertSame(
+            '<input type="text" value="test" style="padding-left:20px" oinvalid=""  />',
+            Sanitize::html(new InputWidget())
         );
     }
 }
