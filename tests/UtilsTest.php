@@ -85,7 +85,7 @@ final class UtilsTest extends \PHPUnit\Framework\TestCase
     public function testGetInputNameExceptionWithTabular(): void
     {
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('The field model cannot be empty for tabular inputs.');
+        $this->expectExceptionMessage('The form model name cannot be empty for tabular inputs.');
 
         Utils::generateInputName('', '[0]dates[0]');
     }

@@ -96,7 +96,7 @@ final class Utils
      *
      * For example, if {@see generateInputName()} returns `Post[content]`, this method will return `post-content`.
      *
-     * @param string $fieldModel The field model name.
+     * @param string $formModel The form model name.
      * @param string $property The property name or expression.
      * @param string $charset default `UTF-8`.
      *
@@ -106,11 +106,11 @@ final class Utils
      * @return string the generated input ID.
      */
     public static function generateInputId(
-        string $fieldModel = '',
+        string $formModel = '',
         string $property = '',
         string $charset = 'UTF-8'
     ): string {
-        $name = mb_strtolower(self::generateInputName($fieldModel, $property), $charset);
+        $name = mb_strtolower(self::generateInputName($formModel, $property), $charset);
 
         return str_replace(['[]', '][', '[', ']', ' ', '.'], ['', '-', '-', '', '-', '-'], $name);
     }
@@ -127,14 +127,14 @@ final class Utils
      * setting the `$arrayable` parameter to `true`. For example, if the form name of the `Post` form is `Post`, then
      * the input name generated for the `tags[]` property would be `Post[tags][]`.
      *
-     * @param string $fieldModel The field model name.
+     * @param string $formModel The form model name.
      * @param string $property The property name or expression.
      * @param bool $arrayable Whether to generate an arrayable input name. This is mainly used in tabular data input.
      *
      * @throws InvalidArgumentException If the property name contains non-word characters or empty form name for
      * tabular inputs
      */
-    public static function generateInputName(string $fieldModel, string $property, bool $arrayable = false): string
+    public static function generateInputName(string $formModel, string $property, bool $arrayable = false): string
     {
         if ($arrayable === true) {
             $property = self::generateArrayableName($property);
@@ -142,15 +142,15 @@ final class Utils
 
         $data = self::parseProperty($property);
 
-        if ($fieldModel === '' && $data['prefix'] === '') {
+        if ($formModel === '' && $data['prefix'] === '') {
             return $property;
         }
 
-        if ($fieldModel !== '') {
-            return $fieldModel . $data['prefix'] . '[' . $data['name'] . ']' . $data['suffix'];
+        if ($formModel !== '') {
+            return $formModel . $data['prefix'] . '[' . $data['name'] . ']' . $data['suffix'];
         }
 
-        throw new InvalidArgumentException('The field model cannot be empty for tabular inputs.');
+        throw new InvalidArgumentException('The form model name cannot be empty for tabular inputs.');
     }
 
     /**
