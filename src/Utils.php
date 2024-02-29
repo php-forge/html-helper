@@ -10,10 +10,12 @@ use UnexpectedValueException;
 use function mb_strtolower;
 use function preg_match;
 use function preg_replace;
+use function str_ends_with;
 use function str_replace;
 use function strlen;
 use function strrchr;
 use function strrpos;
+use function strtolower;
 use function substr;
 use function uniqid;
 
@@ -155,10 +157,20 @@ final class Utils
      * Returns the short name of the given class.
      *
      * @param string $class The class name.
+     * @param bool $suffix Whether to append the `::class` suffix to the class name. If `false`, the suffix will not be
+     * appended.
+     * @param bool $lowercase Whether to return the class name in lowercase. If `false`, the class name will be returned
+     * in its original case.
      */
-    public static function getShortNameClass(string $class): string
+    public static function getShortNameClass(string $class, bool $suffix = true, bool $lowercase = false): string
     {
-        return substr(strrchr($class, '\\'), 1) . '::class';
+        if ($lowercase === true) {
+            $class = strtolower($class);
+        }
+
+        $class = substr(strrchr($class, '\\'), 1);
+
+        return $suffix === true ? "$class::class" : $class;
     }
 
     /**

@@ -153,6 +153,10 @@ The `Utils::class` helper can be used to get the short class name.
 The method accepts one parameter:
 
 - `class:` (string): The class name to get the short name.
+- `suffix:` (string): Whether to append the `::class` suffix to the class name. 
+  For default, it is `true`. If it is `false`, the method will return the short name without the `::class` suffix.
+- `lowercase:` (bool): Whether to convert the class name to lowercase or not. 
+  For default, it is `false`.
 
 ```php
 <?php
@@ -161,7 +165,7 @@ declare(strict_types=1);
 
 use PHPForge\Html\Helper\Utils;
 
-$shortName = Utils::getShortClassName('PHPForge\Html\Helper\Utils'); // return: `Utils`
+$shortName = Utils::getShortClassName('PHPForge\Html\Helper\Utils'); // return: `Utils::class`
 ```
 
 ### Generate arrayable name
