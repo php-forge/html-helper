@@ -95,6 +95,11 @@ final class UtilsTest extends \PHPUnit\Framework\TestCase
         $this->assertSame('UtilsTest::class', Utils::getShortNameClass(self::class));
     }
 
+    public function testGetShortNameClassWithoutSuffix(): void
+    {
+        $this->assertSame('UtilsTest', Utils::getShortNameClass(self::class, false));
+    }
+
     public function testMultibyteGenerateArrayableName(): void
     {
         $this->assertSame('登录[]', Utils::generateArrayableName('登录'));

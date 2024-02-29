@@ -155,10 +155,15 @@ final class Utils
      * Returns the short name of the given class.
      *
      * @param string $class The class name.
+     * @param bool|null $suffix Whether to append the `::class` suffix to the class name. If `null`, the suffix will not
+     * be appended.
      */
-    public static function getShortNameClass(string $class): string
+    public static function getShortNameClass(string $class, bool $suffix = true): string
     {
-        return substr(strrchr($class, '\\'), 1) . '::class';
+        return match($suffix) {
+            true => substr(strrchr($class, '\\'), 1) . '::class',
+            default => substr(strrchr($class, '\\'), 1),
+        };
     }
 
     /**
