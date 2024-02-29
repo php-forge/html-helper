@@ -2,7 +2,7 @@
 
 ## 0.1.2 February 29, 2024
 
-- Enh #4: Refactor `getShortNameClass()` method to support optional `suffix` parameter (@terabytesoftw)
+- Enh #4: Refactor `getShortNameClass()` method to support optional `suffix` and `lowercase` parameters (@terabytesoftw)
 
 ## 0.1.1 February 29, 2024
 

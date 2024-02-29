@@ -95,6 +95,11 @@ final class UtilsTest extends \PHPUnit\Framework\TestCase
         $this->assertSame('UtilsTest::class', Utils::getShortNameClass(self::class));
     }
 
+    public function testGetShortNameClassWithLowercase(): void
+    {
+        $this->assertSame('utilstest', Utils::getShortNameClass(self::class, false, true));
+    }
+
     public function testGetShortNameClassWithoutSuffix(): void
     {
         $this->assertSame('UtilsTest', Utils::getShortNameClass(self::class, false));
