@@ -15,6 +15,7 @@ use function strlen;
 use function strrchr;
 use function strrpos;
 use function substr;
+use function uniqid;
 
 /**
  * Utils provides a set of static methods for common tasks.
