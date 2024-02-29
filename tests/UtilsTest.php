@@ -36,14 +36,19 @@ final class UtilsTest extends \PHPUnit\Framework\TestCase
         Utils::convertToPattern($regexp, $delimiter);
     }
 
-    public function testGetShortNameClass(): void
-    {
-        $this->assertSame('UtilsTest::class', Utils::getShortNameClass(self::class));
-    }
-
     public function testGenerateArrayableName(): void
     {
         $this->assertSame('test.name[]', Utils::generateArrayableName('test.name'));
+    }
+
+    public function testGenerateId(): void
+    {
+        $this->assertMatchesRegularExpression('/^id-[0-9a-f]{13}$/', Utils::generateId());
+    }
+
+    public function testGenerateIdWithPrefix(): void
+    {
+        $this->assertMatchesRegularExpression('/^prefix-[0-9a-f]{13}$/', Utils::generateId('prefix-'));
     }
 
     public function testGenerateInputId(): void
@@ -83,6 +88,11 @@ final class UtilsTest extends \PHPUnit\Framework\TestCase
         $this->expectExceptionMessage('The field model cannot be empty for tabular inputs.');
 
         Utils::generateInputName('', '[0]dates[0]');
+    }
+
+    public function testGetShortNameClass(): void
+    {
+        $this->assertSame('UtilsTest::class', Utils::getShortNameClass(self::class));
     }
 
     public function testMultibyteGenerateArrayableName(): void
