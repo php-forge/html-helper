@@ -15,6 +15,7 @@ use function strlen;
 use function strrchr;
 use function strrpos;
 use function substr;
+use function uniqid;
 
 /**
  * Utils provides a set of static methods for common tasks.
@@ -65,16 +66,6 @@ final class Utils
     }
 
     /**
-     * Returns the short name of the given class.
-     *
-     * @param string $class The class name.
-     */
-    public static function getShortNameClass(string $class): string
-    {
-        return substr(strrchr($class, '\\'), 1) . '::class';
-    }
-
-    /**
      * Generate arrayable name from string.
      *
      * @param string $name String to convert.
@@ -82,6 +73,18 @@ final class Utils
     public static function generateArrayableName(string $name): string
     {
         return !str_ends_with($name, '[]') ? $name . '[]' : $name;
+    }
+
+    /**
+     * Generates a unique ID for an element.
+     *
+     * @param string $prefix The prefix string. If not specified, the default is 'id-'.
+     *
+     * @return string The unique ID.
+     */
+    public static function generateId(string $prefix = 'id-'): string
+    {
+        return uniqid($prefix);
     }
 
     /**
@@ -146,6 +149,16 @@ final class Utils
         }
 
         throw new InvalidArgumentException('The field model cannot be empty for tabular inputs.');
+    }
+
+    /**
+     * Returns the short name of the given class.
+     *
+     * @param string $class The class name.
+     */
+    public static function getShortNameClass(string $class): string
+    {
+        return substr(strrchr($class, '\\'), 1) . '::class';
     }
 
     /**
