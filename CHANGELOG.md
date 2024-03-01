@@ -2,6 +2,8 @@
 
 ## 0.2.1 Under development
 
+- Bug #7: Update branch alias in `composer.json` (@terabytesoftw)
+
 ## 0.2.0 February 29, 2024
 
 - Enh #4: Refactor `getShortNameClass()` method to support optional `suffix` and `lowercase` parameters (@terabytesoftw)
