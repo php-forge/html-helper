@@ -17,6 +17,7 @@ final class Sanitize
      */
     private static array $removeEvilAttributes = [
         'form',
+        'formaction',
         'style',
     ];
     /**
