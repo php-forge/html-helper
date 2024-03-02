@@ -2,6 +2,8 @@
 
 ## 0.2.2 Under development
 
+- Bug #9: Add 'formaction' to list of evil attributes to remove in `Sanitize::class` helper (@terabytesoftw)
+
 ## 0.2.1 March 2, 2024
 
 - Bug #7: Update branch alias in `composer.json` (@terabytesoftw)
