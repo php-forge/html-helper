@@ -1,6 +1,6 @@
 # Change Log
 
-## 0.2.1 Under development
+## 0.2.1 March 2, 2024
 
 - Bug #7: Update branch alias in `composer.json` (@terabytesoftw)
 - Bug #8: Update `php-forge/html-interop` version to `0.3` in `composer.json` (@terabytesoftw)
