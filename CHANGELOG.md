@@ -1,5 +1,7 @@
 # Change Log
 
+## 0.2.2 Under development
+
 ## 0.2.1 March 2, 2024
 
 - Bug #7: Update branch alias in `composer.json` (@terabytesoftw)
