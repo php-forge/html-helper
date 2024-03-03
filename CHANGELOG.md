@@ -5,6 +5,7 @@
 - Bug #9: Add 'formaction' to list of evil attributes to remove in `Sanitize::class` helper (@terabytesoftw)
 - Bug #10: Update `phpdoc` in helper classes (@terabytesoftw)
 - Enh #11: Add `Validator::class` helper (@terabytesoftw)
+- Enh #12: Add `Template::class` helper (@terabytesoftw)
 
 ## 0.2.1 March 2, 2024
 
