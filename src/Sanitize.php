@@ -8,7 +8,7 @@ use PHPForge\Html\Interop\RenderInterface;
 use voku\helper\AntiXSS;
 
 /**
- * Sanitize provides methods for sanitizing HTML content to prevent XSS attacks.
+ * This class provides static methods for sanitizing HTML content to prevent XSS attacks.
  */
 final class Sanitize
 {

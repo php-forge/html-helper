@@ -8,7 +8,7 @@ use function htmlspecialchars;
 use function strtr;
 
 /**
- * Encode provides methods for encoding HTML special characters.
+ * This class provides static methods for encoding HTML special characters.
  */
 final class Encode
 {
