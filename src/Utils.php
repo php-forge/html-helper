@@ -20,7 +20,7 @@ use function substr;
 use function uniqid;
 
 /**
- * Utils provides a set of static methods for common tasks.
+ * This class provides set of static methods for common tasks.
  */
 final class Utils
 {

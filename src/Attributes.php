@@ -15,7 +15,7 @@ use function json_encode;
 use function rtrim;
 
 /**
- * Attributes is a helper class that provides a set of helper methods for managing HTML tag attributes.
+ * This class provides static methods for managing HTML tag attributes.
  */
 final class Attributes
 {
