@@ -265,6 +265,102 @@ $attributes = Attributes::render(
 );
 ```
 
+### Validate value in list
+
+The `Validator::class` helper can be used to validate a value in a list.
+
+The method accepts tree parameters:
+
+- `value:` (mixed): The value to validate.
+- `exceptionMessage:` (string): The exception message to throw if the value is not in the list.
+- `list:` (...string): The list to validate the value.
+
+```php
+<?php
+
+declare(strict_types=1);
+
+use PHPForge\Html\Helper\Validator;
+
+$value = Validator::inList('php', 'The value is not in the list.', 'php', 'javascript', 'typescript');
+```
+
+### Validate value iterable
+
+The `Validator::class` helper can be used to validate an iterable value. If the value is not iterable or `null`, the
+method will throw an `InvalidArgumentException`.
+
+The method accepts one parameter:
+
+- `value:` (mixed): The value to validate.
+
+```php
+<?php
+
+declare(strict_types=1);
+
+use PHPForge\Html\Helper\Validator;
+
+$value = Validator::iterable([1, 2, 3]);
+```
+
+### Validate value numeric
+
+The `Validator::class` helper can be used to validate a numeric value. If the value is not numeric or `null`, the method
+will throw an `InvalidArgumentException`.
+
+The method accepts one parameter:
+
+- `value:` (mixed): The value to validate.
+
+```php
+<?php
+
+declare(strict_types=1);
+
+use PHPForge\Html\Helper\Validator;
+
+$value = Validator::numeric(1);
+```
+
+### Validate value scalar
+
+The `Validator::class` helper can be used to validate a scalar value. If the value is not scalar or `null`, the method
+will throw an `InvalidArgumentException`.
+
+The method accepts one parameter:
+
+- `value:` (...mixed): The value to validate.
+
+```php
+<?php
+
+declare(strict_types=1);
+
+use PHPForge\Html\Helper\Validator;
+
+$value = Validator::scalar('Hello, World!');
+```
+
+### Validate value string
+
+The `Validator::class` helper can be used to validate a string value. If the value is not a string or `null`, the method
+will throw an `InvalidArgumentException`.
+
+The method accepts one parameter:
+
+- `value:` (mixed): The value to validate.
+
+```php
+<?php
+
+declare(strict_types=1);
+
+use PHPForge\Html\Helper\Validator;
+
+$value = Validator::string('Hello, World!');
+```
+
 ## Testing
 
 [Check the documentation testing](docs/testing.md) to learn about testing.
